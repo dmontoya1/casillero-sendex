@@ -12,6 +12,7 @@ import {
   Text,
 } from 'native-base';
 import {ListItem} from 'react-native-elements';
+import CustomComment from './Comment';
 
 export default class Details extends Component {
   constructor(props) {
@@ -30,11 +31,17 @@ export default class Details extends Component {
   loadData() {
     const {navigation} = this.props;
     const result = navigation.getParam('result', {});
-    console.log(result);
     this.setState(() => ({
       result: result,
       loading: false,
     }));
+  }
+
+  loadComment(comment){
+    if (comment.indexOf("<a href") > -1) {
+      return <Text style={styles.comentario2}>{comment}</Text>
+    }
+    return comment
   }
 
   render() {
@@ -71,7 +78,7 @@ export default class Details extends Component {
               subtitle={
                 <View style={styles.subtitleView}>
                   <Text style={styles.comentario1}>Status: {c.comentario}</Text>
-                  <Text style={styles.comentario2}>{c.comentario2}</Text>
+                  <CustomComment comment={c.comentario2}/>
                 </View>
               }
               bottomDivider
