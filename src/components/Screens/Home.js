@@ -70,6 +70,7 @@ export default class Home extends Component {
           [{text: 'Aceptar', onPress: () => {}}],
           {cancelable: false},
         );
+        throw new Error(error);
       });
   }
 
